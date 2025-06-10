@@ -7,30 +7,36 @@ type ProdutoProps = {
 }
 
 export function TesteRequisicao() {
-  const [produto, setProduto] = useState<ProdutoProps[]>([])
 
-  useEffect(() => {
-    fetch('http://localhost:4000/produtos')
-      .then(res => res.json())
-      .then(data => {
-        setProduto(data);
-      })
-      .catch(error => console.error('Erro ao buscar produtos:', error));
-  }, []);
+  const [nome, setNome] = useState("")
+  const [preco, setPreco] = useState(0)
+
+  function salvar() {
+    const novo = {
+      nome,
+      preco,
+      codigo: new Date().getTime()
+    }
+
+    fetch("http://localhost:4000/produtos", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(novo)
+    }).then(() => {
+      setNome("");
+      setPreco(0);
+    }).catch(error => console.error('Erro ao salvar produto:', error));
+  }
 
   return (
-   <section>
-    {produto.length === 0 ? (
-      <p>Nenhum produto encontrado.</p>
-    ) : (
-      produto.map(prod => (
-        <article key={prod.codigo}>
-          <h2>{prod.nome}</h2>
-          <p>Código: {prod.codigo}</p>
-          <p>Preço: R$ {prod.preco.toFixed(2)}</p>
-        </article>
-      ))
-    )}
-  </section>
+    <section>
+      <form>
+        <input type="text" value={nome} onChange={e => setNome(e.target.value)} className="border border-gray-500" />
+        <input type="number" value={preco} onChange={e => setPreco(Number(e.target.value))} className="border border-gray-500" />
+        <button type="button" className="border border-gray-500" onClick={salvar}>Salvar</button>
+      </form>
+    </section>
   )
 }
