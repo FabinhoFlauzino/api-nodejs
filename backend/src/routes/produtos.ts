@@ -9,5 +9,10 @@ router.get("/", (req, res) => {
   res.status(200).send(dados)
 })
 
+router.post("/", (req, res) => {
+  const { nome, preco } = req.body
+  repo.novo(nome, preco)
+  res.status(201).send()
+})
 
 export default router;

@@ -11,5 +11,8 @@ export default class RepositorioProdutos {
     return this.itens
   }
 
-  
+  novo(nome: string, preco: number) {
+    const novoProduto = new Produto(nome, preco)
+    this.itens.push(novoProduto)
+  }
 }

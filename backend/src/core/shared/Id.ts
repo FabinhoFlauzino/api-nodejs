@@ -4,4 +4,4 @@ export default class Id {
   static novo() {
     return uuidv4();
   }
-}
+} 

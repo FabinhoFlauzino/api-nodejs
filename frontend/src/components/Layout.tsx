@@ -1,3 +1,4 @@
+import { TesteRequisicao } from "./Teste";
 import Titulo from "./Titulo";
 import { Outlet } from "react-router-dom";
 interface LayoutProps {
@@ -22,6 +23,7 @@ export default function Layout(props: LayoutProps) {
                 <Titulo>{props.titulo}</Titulo>
                 <div className="p-4">
                     <Outlet />
+                    <TesteRequisicao />
                 </div>
             </div>
         </div>
