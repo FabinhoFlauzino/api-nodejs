@@ -15,4 +15,15 @@ router.post("/", (req, res) => {
   res.status(201).send()
 })
 
+router.get("/:codigo", (req, res) => {
+  const codigo = req.params.codigo
+  const produto = repo.obterPorCodigo(codigo)
+
+  if(produto) {
+    res.status(200).send(produto)
+  } else {
+    res.status(204).send()
+  }
+})
+
 export default router;
