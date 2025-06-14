@@ -20,4 +20,16 @@ export default class RepositorioProdutos {
     const produto = this.itens.find(produto => produto.codigo === cod)
     return produto
   }
+
+  alterarPorCodigo(cod: string, nome?: string, preco?: number) {
+    const indice = this.itens.findIndex(produto => produto.codigo === cod)
+    if (indice >= 0 && indice < this.itens.length) {
+      if (nome) {
+        this.itens[indice].nome = nome
+      }
+      if (preco) {
+        this.itens[indice].preco = preco
+      }
+    }
+  }
 }

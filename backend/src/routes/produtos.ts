@@ -19,11 +19,18 @@ router.get("/:codigo", (req, res) => {
   const codigo = req.params.codigo
   const produto = repo.obterPorCodigo(codigo)
 
-  if(produto) {
+  if (produto) {
     res.status(200).send(produto)
   } else {
     res.status(204).send()
   }
+})
+
+router.put("/:codigo", (req, res) => {
+  const codigo = req.params.codigo
+  const { nome, preco } = req.body
+  repo.alterarPorCodigo(codigo, nome, preco)
+  res.status(200).send()
 })
 
 export default router;
