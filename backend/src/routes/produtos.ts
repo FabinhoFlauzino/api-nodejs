@@ -33,4 +33,10 @@ router.put("/:codigo", (req, res) => {
   res.status(200).send()
 })
 
+router.delete("/:codigo", (req, res) => {
+  const codigo = req.params.codigo
+  repo.deletarPorCodigo(codigo)
+  res.status(200).send()
+})
+
 export default router;

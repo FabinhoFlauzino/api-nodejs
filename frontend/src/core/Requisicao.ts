@@ -23,8 +23,13 @@ export default class Requisicao {
             headers: Requisicao.headers,
             body: JSON.stringify(dadosBody),
         });
-        const resultado = await dados.json();
-        return resultado;
+
+        try {
+            const resultado = await dados.json();
+            return resultado;
+        } catch (error) {
+            return
+        }
     }
 
     static async get(complementoURL: string) {
