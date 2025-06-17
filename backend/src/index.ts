@@ -2,6 +2,9 @@ import express from "express";
 import cors from "cors";
 import rotasProdutos from "./routes/produtos";
 import rotasLogin from "./routes/login"
+import dotenv from "dotenv"
+
+dotenv.config()
 
 const app = express();
 const porta = 4000;
