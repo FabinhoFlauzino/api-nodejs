@@ -3,6 +3,7 @@ import cors from "cors";
 import rotasProdutos from "./routes/produtos";
 import rotasLogin from "./routes/login"
 import dotenv from "dotenv"
+import autenticacao from "./middlewares/autenticacao"
 
 dotenv.config()
 
@@ -14,7 +15,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/login", rotasLogin)
-app.use("/produtos", rotasProdutos);
+app.use("/produtos", autenticacao,rotasProdutos);
 
 app.listen(porta, () => {
     console.log(`rodando na porta ${porta}`);
