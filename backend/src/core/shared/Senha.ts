@@ -6,7 +6,7 @@ export default class Senha {
     return senhaCriptrografada
   }
 
-  static compara(senha: string, senhaCriptrografada: string) {
+  static comparar(senha: string, senhaCriptrografada: string) {
     const senhasIguais = bcrypt.compareSync(senha, senhaCriptrografada)
     return senhasIguais
   }
